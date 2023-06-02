@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(./img/wepdesign.jpg);
+            background-repeat: no-repeat;
+            height: 21880px;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+
+        #video1 {
+            margin-top: 1870px;
+        }
+
+        #video2 {
+            margin-top: 1100px;
+        }
+
+        #video3 {
+            margin-top: 440px;
+        }
+
+        #video4 {
+            margin-top: 450px;
+        }
+        #video5 {
+            margin-left: 30px;
+            margin-top: 290px;
+        }
+
+        #video6 {
+            margin-top: 580px;
+        }
+
+        #video7 {
+            margin-top: 150px;
+        }
+
+        #video8 {
+            margin-top: 2040px;
+        }
+
+        #video9 {
+            margin-top: 330px;
+            margin-left: 40px;
+        }
+
+        #video10 {
+            text-align: center;
+            margin-top: 205px;
+            margin-left: -10px;
+        }
+
+        #video11 {
+            margin-top: -3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="first">
+        <img src="./img/first4.gif" alt="">
+    </div>
+    <section id="video1">
+        <img src="./img/qustion1.gif" alt="">
+    </section>
+    <section id="video2">
+        <img src="./img/keyword4.gif" alt="">
+    </section>
+    <section id="video3">
+        <img src="./img/gido.gif" alt="">
+    </section>
+    <section id="video4">
+        <img src="./img/message.gif" alt="">
+    </section>
+    <section id="video5">
+        <img id="myGif" data-src="./img/gigi.mp4" src="./img/gigif2.gif" alt="GIF" width="1800">
+          
+    </section>
+    <script>
+        var video = null;
+var isPlaying = false;
+var audio = null;
+
+function playVideo() {
+  var gif = document.getElementById('myGif');
+  var gifPosition = gif.getBoundingClientRect().top;
+  var windowHeight = window.innerHeight;
+  var isVisible = (gifPosition < (windowHeight - 100) && gifPosition > -gif.offsetHeight + 100);
+
+  if (isVisible && !isPlaying) {
+    if (!video) {
+      video = document.createElement('video');
+      video.src = gif.getAttribute('data-src');
+      video.style.width = gif.offsetWidth + 'px';
+      video.style.height = gif.offsetHeight + 'px';
+      video.style.position = 'absolute';
+      video.style.top = gif.offsetTop + 'px';
+      video.style.left = gif.offsetLeft + 'px';
+      video.style.visibility = 'hidden';
+
+      gif.parentNode.insertBefore(video, gif);
+    }
+
+    if (!audio) {
+      audio = new Audio();
+      audio.src = './img/gigi.mp4'; // 소리가 들어갈 오디오 파일의 경로를 입력해주세요.
+      audio.loop = true;
+    }
+
+    video.currentTime = 0;
+    video.style.visibility = 'visible';
+    video.play();
+
+    isPlaying = true;
+  } else if (!isVisible && isPlaying) {
+    if (video) {
+      video.pause();
+      video.style.visibility = 'hidden';
+    }
+    if (audio) {
+      audio.pause();
+    }
+
+    isPlaying = false;
+  }
+}
+
+function handleScroll() {
+  playVideo();
+
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(function() {
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+      video.style.visibility = 'hidden';
+    }
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }, 500);
+}
+
+function handleInteraction() {
+  if (audio) {
+    audio.play();
+  }
+}
+
+var scrollTimeout = null;
+window.addEventListener('scroll', handleScroll);
+document.addEventListener('click', handleInteraction);
+    </script>
+    <section id="video6">
+        <img src="./img/qna.gif" alt="">
+    </section>
+    <section id="video7">
+        <img src="./img/wigetmotion.gif" alt="">
+    </section>
+    <section id="video8">
+        <img src="./img/charicmotion.gif" alt="">
+    </section>
+    <section id="video9">
+        <img src="./img/iconmotion.gif" alt="">
+    </section>
+    <section id="video10">
+        <video src="./img/hongbo2.mp4" controls  width="1822"></video>
+    </section>
+    <section id="video11">
+        <img src="./img/phonemotion4.gif" alt="" width="1920">
+    </section>
+</body>
+
+</html>
